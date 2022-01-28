@@ -1,3 +1,5 @@
 <template>
-  <div>App</div>
+  <main>
+    <Timer />
+  </main>
 </template>
