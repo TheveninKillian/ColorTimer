@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}
 h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
 ul{list-style:none}
@@ -11,6 +13,8 @@ td,th{padding:0}
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
+
+  font-family: 'Teko', sans-serif;
 }
 
 main {
@@ -182,6 +186,8 @@ template {
 html,
 body,
 #app {
+  height: 100%;
+
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
