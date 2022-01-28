@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { useWindowSize } from '@vueuse/core'
+const { width, height } = useWindowSize()
+
 const props = defineProps<{
   minute: number
   second: number
@@ -70,27 +73,86 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="timer">
-    <span class="timer__minute"><span v-if="minute < 10">0</span>{{ minute }}:</span>
-    <span class="timer__second"><span v-if="second < 10">0</span>{{ second }}.</span>
-    <span class="timer__millisecond"><span v-if="millisecond < 10">0</span>{{ millisecond }}</span>
-  </div>
+  <div class="timer" :style="{ height: height + 'px' }">
+    <div class="timer__value" :style="{ fontSize: (width * 0.35) + 'px' }">
+      <span class="timer__minute">
+        <div>
+          <span v-if="minute < 10">0</span>
+          <span>{{ minute }}</span>
+        </div>
+      </span>
 
-  <div>
-    <button :disabled="!initPlay" @click="reset()">
-      Reset
-    </button>
+      <span class="timer__point">:</span>
 
-    <button :disabled="initPlay" @click="play()">
-      Play
-    </button>
+      <span class="timer__second">
+        <div>
+          <span v-if="second < 10">0</span>
+          <span>{{ second }}</span>
+        </div>
+      </span>
+
+      <span class="timer__point">.</span>
+
+      <span class="timer__millisecond">
+        <div>
+          <span v-if="millisecond < 10">0</span>
+          <span>{{ millisecond }}</span>
+        </div>
+      </span>
+    </div>
+
+    <div class="timer__btn">
+      <button :disabled="!initPlay" @click="reset()">
+        Reset
+      </button>
+
+      <button :disabled="initPlay" @click="play()">
+        Play
+      </button>
+    </div>
   </div>
 </template>
 
 <style>
 .timer{
-  margin-bottom: 25px;
+  position: relative;
 
-  font-size: 25px;
+  margin-bottom: 25px;
+  width: 100%;
+
+  background-color: #000;
+  color: #fff;
+
+  overflow: hidden;
+}
+
+.timer__value span{
+  display: inline-block;
+}
+
+.timer__value .timer__minute,
+.timer__value .timer__second,
+.timer__value .timer__millisecond{
+  width: calc(90% / 3);
+}
+
+.timer__value .timer__point{
+  width: calc((100% - 90% ) / 2);
+
+  text-align: center;
+}
+
+.timer__value .timer__minute{
+  text-align: right;
+}
+
+.timer__value .timer__second{
+  text-align: center;
+}
+
+.timer .timer__btn{
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
 }
 </style>
