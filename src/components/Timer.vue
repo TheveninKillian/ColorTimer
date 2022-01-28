@@ -48,6 +48,25 @@ const reset = () => {
   minute.value = minuteDefault
   millisecond.value = 0
 }
+
+const pressKeyboard = (e) => {
+  if (initPlay.value === false) {
+    if (e.key === 's')
+      play()
+  }
+  else {
+    if (e.key === 'r')
+      reset()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keypress', e => pressKeyboard(e))
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keypress', e => pressKeyboard(e))
+})
 </script>
 
 <template>
