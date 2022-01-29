@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-import { useWindowSize } from '@vueuse/core'
-const { width, height } = useWindowSize()
+import { useElementSize, useWindowSize } from '@vueuse/core'
+
+const { height } = useWindowSize()
+const el = ref(null)
+const { width } = useElementSize(el)
 
 const props = defineProps<{
   minute: number
@@ -74,30 +77,24 @@ onUnmounted(() => {
 
 <template>
   <div class="timer" :style="{ height: height + 'px' }">
-    <div class="timer__value" :style="{ fontSize: (width * 0.35) + 'px' }">
+    <div ref="el" class="timer__value" :style="{ fontSize: (width * .39) + 'px'}">
       <span class="timer__minute">
-        <div>
-          <span v-if="minute < 10">0</span>
-          <span>{{ minute }}</span>
-        </div>
+        <span v-if="minute < 10">0</span>
+        <span>{{ minute }}</span>
       </span>
 
       <span class="timer__point">:</span>
 
       <span class="timer__second">
-        <div>
-          <span v-if="second < 10">0</span>
-          <span>{{ second }}</span>
-        </div>
+        <span v-if="second < 10">0</span>
+        <span>{{ second }}</span>
       </span>
 
       <span class="timer__point">.</span>
 
       <span class="timer__millisecond">
-        <div>
-          <span v-if="millisecond < 10">0</span>
-          <span>{{ millisecond }}</span>
-        </div>
+        <span v-if="millisecond < 10">0</span>
+        <span>{{ millisecond }}</span>
       </span>
     </div>
 
@@ -117,6 +114,9 @@ onUnmounted(() => {
 .timer{
   position: relative;
 
+  display: flex;
+  align-items: center;
+
   margin-bottom: 25px;
   width: 100%;
 
@@ -126,33 +126,13 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-.timer__value span{
-  display: inline-block;
+.timer__value{
+  width: calc(100% - 50px);
+  margin: auto;
 }
 
-.timer__value .timer__minute,
-.timer__value .timer__second,
-.timer__value .timer__millisecond{
-  width: calc(90% / 3);
-}
-
-.timer__value .timer__point{
-  width: calc((100% - 90% ) / 2);
-
-  text-align: center;
-}
-
-.timer__value .timer__minute{
-  text-align: right;
-}
-
-.timer__value .timer__second{
-  text-align: center;
-}
-
-.timer .timer__btn{
+.timer__btn{
   position: absolute;
-  bottom: 50px;
-  left: 50%;
+  bottom: 0;
 }
 </style>
