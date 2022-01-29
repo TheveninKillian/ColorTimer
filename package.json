@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^7.5.3",
+    "electron-aspect-ratio-browser-window": "^1.0.2",
     "pinia": "^2.0.10",
     "vue": "^3.2.26"
   },

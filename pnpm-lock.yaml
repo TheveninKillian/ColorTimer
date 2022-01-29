@@ -8,6 +8,7 @@ specifiers:
   '@vueuse/core': ^7.5.3
   cypress: ^9.3.1
   electron: ^16.0.8
+  electron-aspect-ratio-browser-window: ^1.0.2
   eslint: ^8.6.0
   jsdom: ^19.0.0
   pinia: ^2.0.10
@@ -21,6 +22,7 @@ specifiers:
 
 dependencies:
   '@vueuse/core': 7.5.3_vue@3.2.26
+  electron-aspect-ratio-browser-window: 1.0.2_electron@16.0.8
   pinia: 2.0.10_typescript@4.5.4+vue@3.2.26
   vue: 3.2.26
 
@@ -1339,6 +1341,14 @@ packages:
       jsbn: 0.1.1
       safer-buffer: 2.1.2
     dev: true
+
+  /electron-aspect-ratio-browser-window/1.0.2_electron@16.0.8:
+    resolution: {integrity: sha512-wmLx6/TZZc2Kfw1K5q3ZHcEb3vYGXCYWUnmHPBzf0ryUhXJV9yOcmoenwuA7X/zyyjrimzVAX+cRHx2JOwYV3Q==}
+    peerDependencies:
+      electron: ^6
+    dependencies:
+      electron: 16.0.8
+    dev: false
 
   /electron/16.0.8:
     resolution: {integrity: sha512-znTVkl8LaGcPNdfc6SRr+6LYg2GtSCKXln/nW/PC+urBfAFnOYIuDock8QyGVFfzr5PuAa+g8YQQAboHV77D7g==}
