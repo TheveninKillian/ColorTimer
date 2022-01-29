@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { useElementSize, useWindowSize } from '@vueuse/core'
+import { useElementSize } from '@vueuse/core'
 
-const { height } = useWindowSize()
 const el = ref(null)
 const { width } = useElementSize(el)
 
@@ -76,7 +75,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="timer" :style="{ height: height + 'px' }">
+  <div class="timer">
     <div ref="el" class="timer__value" :style="{ fontSize: (width * .39) + 'px'}">
       <span class="timer__minute">
         <span v-if="minute < 10">0</span>
@@ -98,7 +97,7 @@ onUnmounted(() => {
       </span>
     </div>
 
-    <div class="timer__btn">
+    <div v-if="width > 600" class="timer__btn">
       <button :disabled="!initPlay" @click="reset()">
         Reset
       </button>
@@ -120,10 +119,7 @@ onUnmounted(() => {
   margin-bottom: 25px;
   width: 100%;
 
-  background-color: #000;
-  color: #fff;
-
-  overflow: hidden;
+  z-index: 0;
 }
 
 .timer__value{
@@ -134,5 +130,11 @@ onUnmounted(() => {
 .timer__btn{
   position: absolute;
   bottom: 0;
+  left: 0;
+
+  height: 25px;
+  width: 100%;
+
+  text-align: center;
 }
 </style>
