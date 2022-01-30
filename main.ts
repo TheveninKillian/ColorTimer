@@ -17,13 +17,10 @@ function createWindow() {
     frame: false,
     webPreferences: {
       nodeIntegration: true,
-      enableRemoteModule: true,
     },
   })
 
   win.setAspectRatio(12 / 5)
-
-  win.openDevTools()
 
   win.loadFile('dist/index.html')
 }

@@ -123,7 +123,7 @@ onUnmounted(() => {
 }
 
 .timer__value{
-  width: calc(100% - 50px);
+  width: calc(100% - 100px);
   margin: auto;
 }
 
